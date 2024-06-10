@@ -58,6 +58,45 @@ void HapusLangkahPertama(char pemain) {
 }
 
 int main() {
-    
+    PapanAwal();
+    char pemainSekarang = 'X';
+    int baris, kolom;
+
+    while (true) {
+        CetakPapan();
+        cout << "Pemain " << pemainSekarang << ", masukkan langkah anda:\nBaris: ";
+        cin >> baris;
+        cout << "Kolom: ";
+        cin >> kolom;
+
+        if (!langkahValid(baris, kolom)) {
+            cout << "Langkah tidak valid. Coba lagi." << endl;
+            continue;
+        }
+
+        baris--; kolom--;
+        papan->grid[baris][kolom] = pemainSekarang;
+        if (pemainSekarang == 'X') {
+            langkahX.push_back(make_pair(baris, kolom));
+            if (langkahX.size() > 3) {
+                hapusLangkahPertama('X');
+            }
+        } else {
+            langkahO.push_back(make_pair(baris, kolom));
+            if (langkahO.size() > 3) {
+                hapusLangkahPertama('O');
+            }
+        }
+
+        if (CekMenang(pemainSekarang)) {
+            CetakPapan();
+            cout << "Pemain " << pemainSekarang << " menang!" << endl;
+            break;
+        }
+
+        pemainSekarang = (pemainSekarang == 'X') ? 'O' : 'X';
+    }
+
+    delete papan;
     return 0;
 }
