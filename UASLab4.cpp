@@ -69,7 +69,7 @@ int main() {
         cout << "Kolom: ";
         cin >> kolom;
 
-        if (!langkahValid(baris, kolom)) {
+        if (!LangkahValid(baris, kolom)) {
             cout << "Langkah tidak valid. Coba lagi." << endl;
             continue;
         }
@@ -79,12 +79,12 @@ int main() {
         if (pemainSekarang == 'X') {
             langkahX.push_back(make_pair(baris, kolom));
             if (langkahX.size() > 3) {
-                hapusLangkahPertama('X');
+                HapusLangkahPertama('X');
             }
         } else {
             langkahO.push_back(make_pair(baris, kolom));
             if (langkahO.size() > 3) {
-                hapusLangkahPertama('O');
+                HapusLangkahPertama('O');
             }
         }
 
