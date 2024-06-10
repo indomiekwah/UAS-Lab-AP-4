@@ -1,10 +1,9 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-const int ukuran = 3;
 
 struct Papan {
-    char grid[ukuran][ukuran];
+    char grid[3][3];
 };
 
 Papan* papan = new Papan;
@@ -12,26 +11,26 @@ vector<pair<int, int>> langkahX;
 vector<pair<int, int>> langkahO;
 
 void PapanAwal() {
-    for (int i = 0; i < ukuran; i++) {
-        for (int j = 0; j < ukuran; j++) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
             papan->grid[i][j] = ' ';
         }
     }
 }
 
 void CetakPapan() {
-    for (int i = 0; i < ukuran; i++) {
-        for (int j = 0; j < ukuran; j++) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
             cout << papan->grid[i][j];
-            if (j < ukuran - 1) cout << " | ";
+            if (j < 2) cout << " | ";
         }
         cout << endl;
-        if (i < ukuran - 1) cout << "---------" << endl;
+        if (i < 2) cout << "---------" << endl;
     }
 }
 
 bool CekMenang(char pemain) {
-    for (int i = 0; i < ukuran; i++) {
+    for (int i = 0; i < 3; i++) {
         if (papan->grid[i][0] == pemain && papan->grid[i][1] == pemain && papan->grid[i][2] == pemain) return true;
         if (papan->grid[0][i] == pemain && papan->grid[1][i] == pemain && papan->grid[2][i] == pemain) return true;
     }
@@ -42,7 +41,7 @@ bool CekMenang(char pemain) {
 
 bool LangkahValid(int baris, int kolom) {
     baris--; kolom--; 
-    return (baris >= 0 && baris < ukuran && kolom >= 0 && kolom < ukuran && papan->grid[baris][kolom] == ' ');
+    return (baris >= 0 && baris < 3 && kolom >= 0 && kolom < 3 && papan->grid[baris][kolom] == ' ');
 }
 
 void HapusLangkahPertama(char pemain) {
